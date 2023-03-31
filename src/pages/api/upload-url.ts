@@ -1,7 +1,7 @@
 import S3 from 'aws-sdk/clients/s3'
 import { NextApiRequest, NextApiResponse } from 'next'
+import clientPromise from '../../../lib/mongodb'
 
-// path to uploaded image - https://[BUCKET-NAME].s3.[REGION].amazonaws.com/[FILE-NAME]
 
 export default async function handler(
   req: NextApiRequest,
@@ -22,6 +22,14 @@ export default async function handler(
       ['content-length-range', 0, 12582912], // up to 1 MB
     ],
   })
+
+  try {
+    const client = await clientPromise;
+    const db = client.db("myviewubc");
+    await db.collection("uploads").insertOne({ url: `https://${process.env.BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${encodeURIComponent((req.query.file as string))}` })
+  } catch (e) {
+    console.log(e);
+  }
 
   res.status(200).json(post)
 }
