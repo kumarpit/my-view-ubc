@@ -29,8 +29,8 @@ export default function Home() {
     const { url, fields } = await res.json()
     const formData = new FormData()
 
-    Object.entries({ ...fields, file: image }).forEach(([key, value]) => {
-      formData.append(key, value as string)
+    Object.entries({ ...(fields as { [key: string]: string }), file: (image as File) }).forEach(([key, value]) => {
+      formData.append(key, value)
     })
 
     const upload = await fetch(url, {
@@ -61,7 +61,8 @@ export default function Home() {
             <option value="walter gage">Walter Gage</option>
           </select>
           <input name="buildingnumber" type="text" placeholder="building" />
-          <input name="unitnumber" type="text" placeholder="unit number" />
+          <input name="unitnumber" type="text" placeholder="unit number or any other identifier (eg. west facing)" />
+          <input name="description" type="text" placeholder="description" />
           <input name="file" type="file" accept="image/*" onChange={uploadToClient} />
         </form>
         <button type="submit" form="form" onClick={uploadToServer}>Submit</button>

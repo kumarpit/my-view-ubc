@@ -1,6 +1,8 @@
 import S3 from 'aws-sdk/clients/s3'
 import { NextApiRequest, NextApiResponse } from 'next'
 
+// path to uploaded image - https://[BUCKET-NAME].s3.[REGION].amazonaws.com/[FILE-NAME]
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
