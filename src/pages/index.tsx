@@ -29,7 +29,7 @@ export default function Home() {
     const { url, fields } = await res.json()
     const formData = new FormData()
 
-    Object.entries({ ...fields, image }).forEach(([key, value]) => {
+    Object.entries({ ...fields, file: image }).forEach(([key, value]) => {
       formData.append(key, value as string)
     })
 
