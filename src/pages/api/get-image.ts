@@ -5,6 +5,13 @@ const s3 = new S3({
     apiVersion: '2006-03-01',
 })
 
+const encode = (data: any) => {
+    let buf = Buffer.from(data);
+    let base64 = buf.toString("base64");
+    return base64;
+}
+
+
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -15,8 +22,11 @@ export default async function handler(
     }
 
     s3.getObject(params, function(err, data) {
-        if (err) console.log(err, err.stack); // an error occurred
-        else     console.log(data); 
+        if (err) res.status(500).json({ message: "An error occurred" }); // an error occurred
+        else  {
+            // get mime type
+            res.status(200).json(`data:image/jpeg;base64,${encode(data.Body)}`); 
+        }
     })  
 };
 
