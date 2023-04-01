@@ -1,9 +1,7 @@
 import S3 from "aws-sdk/clients/s3";
 import { NextApiRequest, NextApiResponse } from "next";
+import clientPromise from "../../../lib/mongodb";
 
-const s3 = new S3({
-    apiVersion: '2006-03-01',
-})
 
 const encode = (data: any) => {
     let buf = Buffer.from(data);
@@ -11,22 +9,46 @@ const encode = (data: any) => {
     return base64;
 }
 
+const getS3SignedUrlById = async (key: string) => {
+    const s3Bucket = new S3({ params: { Bucket: process.env.BUCKET_NAME } });
+    return await s3Bucket.getSignedUrl("getObject", {
+        Key: key,
+        Expires: 60,
+    });
+}
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    let params = {
-        Bucket: process.env.BUCKET_NAME as string,
-        Key: "c81b4228321923.563731b589b37.jpeg"
-    }
+    const client = await clientPromise;
+    const db = client.db("myviewubc");
+    const _views = await db.collection('uploads').find().toArray();
+    let views = JSON.parse(JSON.stringify(_views));
 
-    s3.getObject(params, function(err, data) {
-        if (err) res.status(500).json({ message: "An error occurred" }); // an error occurred
-        else  {
-            // get mime type
-            res.status(200).json(`data:image/jpeg;base64,${encode(data.Body)}`); 
+    // let params = {
+    //     Bucket: process.env.BUCKET_NAME as string,
+    //     Key: ""
+    // }
+
+    for (const i in views) {
+        const view = views[i];
+        try {
+            // const data = await s3.getObject(params).promise();
+            // views[i] = {
+            //     ...views[i],
+            //     data: `data:${view.filetype};base64,${encode(data.Body)}`
+            // }
+            views[i] = {
+                ...views[i],
+                data: await getS3SignedUrlById(view.filename)
+            }
+        } catch (err) {
+            return res.status(500).json({ message: "An error occurred" })
         }
-    })  
+            
+    }  
+
+    res.status(200).json(views);
 };
 

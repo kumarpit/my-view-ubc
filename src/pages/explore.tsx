@@ -4,13 +4,15 @@ import Image from "next/image";
 
 export default function Explore() {
     const [image, setImage] = useState<string>("");
+    const [data, setData] = useState<any[]>([]);
     useEffect(() => {
         getViews();
     }, [])
 
     const getViews = async () => {
-        const data = await fetch(`api/get-image`)
-        setImage(await data.json())
+        const res = await fetch(`api/get-image`)
+        const data = await res.json();
+        setData(data);
     }
 
     return (
@@ -24,7 +26,13 @@ export default function Explore() {
                 <input name="buildingnumber" type="text" placeholder="building" />
                 <input name="unitnumber" type="text" placeholder="unit number" />
             </form>
-            <Image src={image} alt="preview of uploaded image" width={500} height={500} />
+            { 
+                data.map((val, _) => {
+                    return (
+                        <Image src={val.data} alt="preview of uploaded image" width={500} height={500} key={val._id} />
+                    )
+                })
+            }
         </div>
     )
 }

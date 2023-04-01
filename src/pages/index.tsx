@@ -63,6 +63,9 @@ export default function Home() {
       // upload to s3
       const uploadS3 = await fetch(url, {
         method: 'POST',
+        headers: {
+          'Content-Type': image.type
+        },
         body: formDataS3
       })
 
