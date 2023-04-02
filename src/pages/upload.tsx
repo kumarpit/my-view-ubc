@@ -2,7 +2,7 @@ import Head from "next/head"
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react";
-import { Nullable } from "./types";
+import { Nullable } from "../../lib/types";
 import short from 'short-uuid';
 
 const translator = short();

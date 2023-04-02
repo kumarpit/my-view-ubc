@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import View from "./components/View";
-import { Nullable } from "./types";
+import { Nullable } from "../../lib/types";
 
 export default function Home() {
     const [data, setData] = useState<any[]>([]);
