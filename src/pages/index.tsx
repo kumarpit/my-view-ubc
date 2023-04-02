@@ -30,7 +30,7 @@ export default function Home() {
     }
 
     return (
-        <div className="">
+        <div className="mx-4">
             <div className="py-8 max-w-5xl lg:py-8 mx-auto">
             <h1 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">MyViewUBC</h1>
             <form action="#">
