@@ -26,6 +26,7 @@ export default function Upload() {
     }
   };
 
+  // TODO: update this function
   const uploadToServer = async (event: React.MouseEvent) => {
     try {
       event.preventDefault();
