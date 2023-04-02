@@ -8,9 +8,7 @@ export default function Explore() {
     }, [])
 
     const getViews = async () => {
-        const res = await fetch(`api/get-image`)
-        const data = await res.json();
-        setData(data);
+        // TODO
     }
 
     return (
@@ -19,9 +17,9 @@ export default function Explore() {
             <h1 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">MyViewUBC</h1>
             <form action="#">
                   <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                      <div className="sm:col-span-1">
-                          <select id="residence" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                              <option selected={true}>Select residence</option>
+                      <div className="flex flex-col justify-center sm:col-span-1">
+                          <select id="residence" defaultValue="Select residence" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                              <option>Select residence</option>
                               <option value="TV">Walter Gage</option>
                               <option value="PC">tə šxʷhəleləm̓s tə k̓ʷaƛ̓kʷəʔaʔɬ</option>
                               <option value="GA">Exchange</option>

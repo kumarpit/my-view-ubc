@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useState } from "react";
 import { Nullable } from "./types";
 
+
 export default function Home() {
   const [residence, setResidence] = useState<Nullable<string>>(null);
   const [building, setBuilding] = useState<Nullable<string>>(null);
@@ -50,27 +51,6 @@ export default function Home() {
       if (!uploadMongo.ok) throw new Error("Error updating MonogoDB");
 
       // upload to s3
-      const res = await fetch(
-        `/api/upload-url?file=${filename}&fileType=${fileType}`
-      )
-      const { url, fields } = await res.json()
-      const formDataS3 = new FormData()
-
-      Object.entries({ ...(fields as { [key: string]: string }), file: (image as File) }).forEach(([key, value]) => {
-        formDataS3.append(key, value)
-      })
-
-      // upload to s3
-      const uploadS3 = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': image.type
-        },
-        body: formDataS3
-      })
-
-      if (!uploadS3.ok) throw new Error("Error uploading file to S3");
-
       setStatus("Uploaded!")
     } catch (err) {
       setStatus((err as any).message)
@@ -93,8 +73,8 @@ export default function Home() {
                   <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                       <div className="sm:col-span-2">
                           <label htmlFor="residence" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Residence</label>
-                          <select id="residence" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                              <option selected={true}>Select residence</option>
+                          <select id="residence" defaultValue="Select residence" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                              <option>Select residence</option>
                               <option value="TV">Walter Gage</option>
                               <option value="PC">tə šxʷhəleləm̓s tə k̓ʷaƛ̓kʷəʔaʔɬ</option>
                               <option value="GA">Exchange</option>
@@ -126,7 +106,7 @@ export default function Home() {
                         <div className="flex items-center justify-center w-full">
                           <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                             <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg aria-hidden="true" className="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                <svg aria-hidden="true" className="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                                 <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                                 <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
