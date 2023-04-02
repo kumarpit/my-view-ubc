@@ -73,8 +73,8 @@ export default function Home() {
             { 
                 data.map((val, _) => {
                     return (
-                        <div>
-                            <View key={_} {...val} />
+                        <div key={_}>
+                            <View key={`${_}+1`} {...val} />
                         </div>
                     )
                 })
