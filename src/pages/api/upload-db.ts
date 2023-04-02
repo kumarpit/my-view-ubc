@@ -27,8 +27,7 @@ export default async function handler(
         const db = client.db("myviewubc");
 
         const url = await getS3SignedUrlById(filename);
-        const { img, base64 } = await getPlaiceholder(url, { size: 20 });
-        console.log(img);
+        const { base64 } = await getPlaiceholder(url, { size: 20 });
 
         await db.collection("uploads").insertOne({ ...fields, url: imgUrl, base64 })
 
