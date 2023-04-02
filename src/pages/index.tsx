@@ -32,7 +32,7 @@ export default function Home() {
     return (
         <div className="mx-4">
             <div className="py-8 max-w-5xl lg:py-8 mx-auto">
-            <Link href="https://github.com/kumarpit/my-view-ubc" className="mb-4 text-xl font-bold text-gray-900 dark:text-white">MyViewUBC</Link>
+            <h1 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">MyViewUBC</h1>
             <form action="#">
                   <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                       <div className="flex flex-col justify-center sm:col-span-1">
