@@ -19,7 +19,6 @@ export default async function handler(
 
     try {
         const { fields } = await formData;
-        console.log(fields);
         const { filename } = fields as any;
         const imgUrl = `https://${process.env.BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${encodeURIComponent(filename)}`
 

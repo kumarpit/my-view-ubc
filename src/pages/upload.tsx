@@ -1,5 +1,4 @@
 import Head from "next/head"
-import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react";
 import { Nullable } from "../../lib/types";
@@ -39,9 +38,9 @@ export default function Upload() {
 
       // validate form
       const formDataDb = new FormData();
-      if (!residence && !building) throw new Error("Residence and Building are required fields")
-      formDataDb.append("residence", residence!);
-      formDataDb.append("building", building!);
+      if (!residence) throw new Error("Residence is a required field")
+      formDataDb.append("residence", residence);
+      if (building) formDataDb.append("building", building);
       if (unit) formDataDb.append("unit", unit);
       if (description) formDataDb.append("description", description);
       formDataDb.append("filename", _filename);

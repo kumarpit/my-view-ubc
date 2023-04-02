@@ -20,7 +20,7 @@ export default function View({ residence, building, unit, description, data, bas
                 </div>
                 <div className="px-6 py-4">
                     <div className="font-bold text-xl mb-2">{residence}</div>
-                    <p className="text-gray-700 text-base">Building {building}</p>
+                    {building && <p className="text-gray-700 text-base">Building {building}</p>}
                     <p className="text-gray-700 text-base">{unit}</p>
                     <p className="text-gray-700 text-base">{description}</p>
                 </div>
