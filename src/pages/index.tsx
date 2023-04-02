@@ -3,7 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react";
 import { Nullable } from "./types";
-
+import axios from 'axios';
 
 export default function Home() {
   const [residence, setResidence] = useState<Nullable<string>>(null);
@@ -51,6 +51,21 @@ export default function Home() {
       if (!uploadMongo.ok) throw new Error("Error updating MonogoDB");
 
       // upload to s3
+      const formDataS3 = new FormData();
+      formDataS3.append("file", image);
+      formDataS3.append("filename", image.name);
+
+      const config = {
+        headers: {
+          "content-type": "multipart/form-data"
+        }
+      }
+
+      try {
+        await axios.post("/api/upload-url", formDataS3, config);
+      } catch (err) {
+        console.error(err);
+      }
       setStatus("Uploaded!")
     } catch (err) {
       setStatus((err as any).message)
