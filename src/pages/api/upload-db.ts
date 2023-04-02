@@ -7,6 +7,7 @@ export default async function handler(
     res: NextApiResponse
 ) {
     const form = formidable()
+    // use promisify instead
     const formData = new Promise<{ fields: formidable.Fields, files: formidable.Files }>((resolve, reject) => {
         form.parse(req, async (err, fields, files) => {
             if (err) reject(err);
@@ -21,6 +22,9 @@ export default async function handler(
 
         const client = await clientPromise;
         const db = client.db("myviewubc");
+
+        // TODO
+        // generate signed get object and use plaiceholder to generate base64 placeholder image
         await db.collection("uploads").insertOne({ ...fields, url: imgUri })
 
         return res.status(200).json({ message: "upload successful" })
