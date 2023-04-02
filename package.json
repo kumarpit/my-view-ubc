@@ -22,6 +22,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sharp": "^0.32.0",
+    "short-uuid": "^4.2.2",
     "typescript": "5.0.2"
   },
   "devDependencies": {
