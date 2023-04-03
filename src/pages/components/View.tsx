@@ -17,6 +17,7 @@ export default function View({ residence, building, unit, description, data, bas
                             height: '100%',
                             maxHeight: '450px'
                         }}
+                        unoptimized
                     />
                 </div>
                 <div className="px-6 py-4">
