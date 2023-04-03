@@ -142,7 +142,7 @@ export default function Upload() {
                           <textarea id="description" rows={8} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Any comments..." onChange={e => setDescription(e.target.value)}></textarea>
                       </div>
                       <div>
-                        {image && <Image src={createObjectURL} alt="preview of uploaded image" width={500} height={500} />}
+                        {image && <Image src={createObjectURL} alt="preview of uploaded image" width={500} height={500} unoptimized />}
                         <div className="py-4">
                           <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={uploadToServer}>Upload</button>
                         </div>
