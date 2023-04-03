@@ -30,7 +30,7 @@ export default function Home() {
     }
 
     return (
-        <div className="mx-4">
+        <div className="mx-4 my-8">
             <div className="py-8 max-w-5xl lg:py-8 mx-auto">
             <h1 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">MyViewUBC</h1>
             <form action="#">
@@ -42,6 +42,7 @@ export default function Home() {
                               <option value="CP">tə šxʷhəleləm̓s tə k̓ʷaƛ̓kʷəʔaʔɬ</option>
                               <option value="EX">Exchange</option>
                               <option value="BC">Brock Commons</option>
+                              <option value="OC">Orchard Commons</option>
                               <option value="IH">Iona House</option>
                               <option value="PV">Place Vanier</option>
                               <option value="TP">Totem Park</option>

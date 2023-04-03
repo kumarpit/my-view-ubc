@@ -15,6 +15,7 @@ export default function View({ residence, building, unit, description, data, bas
                         style={{
                             width: '100%',
                             height: '100%',
+                            maxHeight: '450px'
                         }}
                     />
                 </div>

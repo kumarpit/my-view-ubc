@@ -100,6 +100,7 @@ export default function Upload() {
                               <option value="CP">tə šxʷhəleləm̓s tə k̓ʷaƛ̓kʷəʔaʔɬ</option>
                               <option value="EX">Exchange</option>
                               <option value="BC">Brock Commons</option>
+                              <option value="OC">Orchard Commons</option>
                               <option value="IH">Iona House</option>
                               <option value="PV">Place Vanier</option>
                               <option value="TP">Totem Park</option>
