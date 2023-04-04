@@ -143,9 +143,9 @@ export default function Upload() {
                       </div>
                       <div>
                         {image && <Image src={createObjectURL} alt="preview of uploaded image" width={500} height={500} unoptimized />}
-                        <div className="py-4">
+                        {/* <div className="py-4">
                           <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={uploadToServer}>Upload</button>
-                        </div>
+                        </div> */}
                       </div>
                   </div>
               </form>
